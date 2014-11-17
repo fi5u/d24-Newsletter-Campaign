@@ -152,7 +152,8 @@ class D24nc {
 
 		$plugin_admin = new D24nc_Admin( $this->get_d24nc(), $this->get_version() );
 
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu', 9 );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_submenus_last', 10 );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'add_settings' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

@@ -82,7 +82,7 @@ class D24nc_Public {
                         'description'           => __( 'Stores campaign details.', $this->plugin_name ),
                         'public'                => true,
                         'show_ui'               => true,
-                        'show_in_menu'          => true, //'newsletter-campaign'
+                        'show_in_menu'          => $this->plugin_name, //'newsletter-campaign'
                         'map_meta_cap'          => true,
                         'publicly_queryable'    => true,
                         'exclude_from_search'   => false,
@@ -116,7 +116,7 @@ class D24nc_Public {
                         'description'           => __( 'Stores template details.', $this->plugin_name ),
                         'public'                => true,
                         'show_ui'               => true,
-                        'show_in_menu'          => true, //'newsletter-campaign'
+                        'show_in_menu'          => $this->plugin_name, //'newsletter-campaign'
                         'map_meta_cap'          => true,
                         'publicly_queryable'    => true,
                         'exclude_from_search'   => false,
@@ -150,7 +150,7 @@ class D24nc_Public {
                         'description'           => __( 'Stores subscriber details.', $this->plugin_name ),
                         'public'                => true,
                         'show_ui'               => true,
-                        'show_in_menu'          => true, //'newsletter-campaign'
+                        'show_in_menu'          => $this->plugin_name, //'newsletter-campaign'
                         'map_meta_cap'          => true,
                         'publicly_queryable'    => true,
                         'exclude_from_search'   => false,

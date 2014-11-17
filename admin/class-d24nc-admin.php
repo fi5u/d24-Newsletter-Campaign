@@ -87,6 +87,12 @@ class D24nc_Admin {
             array( $this, 'output_settings_page' )                      // Function
         );
 
+    }
+
+    /**
+     * Add sub menus to be output after custom post menu items have been output
+     */
+    public function add_submenus_last() {
         add_submenu_page(
             $this->plugin_name, // Parent slug
             __( 'Subscriber Lists', $this->plugin_name ), // Page title
