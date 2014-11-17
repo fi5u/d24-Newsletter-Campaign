@@ -1,6 +1,26 @@
 (function( $ ) {
 	'use strict';
 
+    $(function() {
+       /**
+        * Keeps subscriber edit menu open when on subscriber edit screen
+        */
+        function subscriberEditMenuPersist() {
+            $('.toplevel_page_d24nc')
+                .addClass('wp-has-current-submenu wp-menu-open')
+                .find('li').has('a[href*="edit-tags.php"]')
+                .addClass('current');
+        }
+
+
+        /**
+         * If user is on subscriber list taxonomy page
+         */
+        if ($('body').hasClass('post-type-d24nc_subscriber') && $('body').hasClass('taxonomy-d24nc_subscriber_list')) {
+            subscriberEditMenuPersist();
+        }
+    });
+
 	/**
 	 * All of the code for your Dashboard-specific JavaScript source
 	 * should reside in this file.
