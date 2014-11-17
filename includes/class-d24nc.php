@@ -113,6 +113,11 @@ class D24nc {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-d24nc-admin.php';
 
+        /**
+         * The class responsible for generating and saving metaboxes.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-d24nc-metaboxes.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -151,12 +156,15 @@ class D24nc {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new D24nc_Admin( $this->get_d24nc(), $this->get_version() );
+        $meta_boxes = new D24nc_Metaboxes( $this->get_d24nc(), $this->get_version() );
 
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu', 9 );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_submenus_last', 10 );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'add_settings' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'admin_head', $meta_boxes, 'remove_subscriber_taxonomy' );
+        $this->loader->add_action( 'admin_head', $meta_boxes, 'add_subscriber_taxonomy' );
 
 	}
 
