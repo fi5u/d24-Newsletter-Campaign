@@ -105,7 +105,8 @@ class D24nc_Admin {
     public function output_text_field( $args ) {
         $name = $args['name'];
         $options = get_option( 'd24nc_settings' );
-        ?><input type="text" name="nc_settings[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo $options[$name]; ?>"><?php
+
+        ?><input type="text" name="d24nc_settings[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo $options[$name]; ?>"><?php
     }
 
     /**
@@ -115,11 +116,13 @@ class D24nc_Admin {
      * @var     array   $args   Array of called attributes
      */
     public function output_dropdown_pages( $args ) {
+        $name = $args['name'];
         $options = get_option( 'd24nc_settings' );
+
         $wp_dropdown_args = array(
             'selected'          => $options[$name],
-            'name'              => 'd24nc_settings[' . $args['name'] . ']',
-            'id'                => $args['name'],
+            'name'              => 'd24nc_settings[' . $name . ']',
+            'id'                => $name,
             'show_option_none'  => __('Default text', $this->plugin_name),
             'show_option_value' => ''
         );
