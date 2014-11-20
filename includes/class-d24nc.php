@@ -183,6 +183,21 @@ class D24nc {
 
         $this->loader->add_filter( 'hidden_meta_boxes', $meta_boxes, 'hide_meta_boxes', 10, 3 );
 
+        $this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'set_messages' );
+        /*switch ( $screen->post_type ) {
+            case 'd24nc_campaign':
+                $this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'set_campaign_messages' );
+
+                break;
+            case 'd24nc_template':
+                $this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'set_template_messages' );
+
+                break;
+            case 'd24nc_subscriber':
+                $this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'set_subscriber_messages' );
+
+                break;
+        }*/
 	}
 
 	/**

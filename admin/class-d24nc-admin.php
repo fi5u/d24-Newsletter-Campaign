@@ -244,4 +244,43 @@ class D24nc_Admin {
 
 	}
 
+    /**
+     * Override default messages
+     *
+     * @since 1.0.0
+     */
+    public function set_messages($messages) {
+
+        $screen = get_current_screen();
+        switch ( $screen->post_type ) {
+            case 'd24nc_campaign':
+                // Do not display 'view post' link
+                $messages['post'][1] = __( 'Campaign updated.', $this->plugin_name );
+                // Remove 'Post saved' message when mail sent
+                $messages['post'][4] = '';
+                // Override the message for first save
+                $messages['post'][6] = __( 'Campaign saved.', $this->plugin_name );
+
+                break;
+
+            case 'd24nc_template':
+                // Do not display 'view post' link
+                $messages['post'][1] = __( 'Template updated.', $this->plugin_name );
+                // Override the message for first save
+                $messages['post'][6] = __( 'Template saved.', $this->plugin_name );
+
+                break;
+
+            case 'd24nc_subscriber':
+                // Do not display 'view post' link
+                $messages['post'][1] = __( 'Subscriber updated.', $this->plugin_name );
+                // Override the message for first save
+                $messages['post'][6] = __( 'Subscriber saved.', $this->plugin_name );
+
+                break;
+        }
+        return $messages;
+
+    }
+
 }
