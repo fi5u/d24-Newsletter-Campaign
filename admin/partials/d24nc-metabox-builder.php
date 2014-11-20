@@ -92,7 +92,7 @@
                 $builder_custom_posts = get_posts( $builder_custom_posts_args );
 
                 // Output the list of posts
-                echo get_builder_post_from_block( ucfirst( $key ), $builder_custom_posts );
+                echo $this->get_builder_post_from_block( ucfirst( $key ), $builder_custom_posts );
             }
         }
 
