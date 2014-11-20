@@ -181,6 +181,8 @@ class D24nc {
         $this->loader->add_action( 'add_meta_boxes', $meta_boxes, 'add_meta_boxes' );
         $this->loader->add_action( 'save_post', $meta_boxes, 'save_meta_boxes', 10, 2 );
 
+        $this->loader->add_filter( 'hidden_meta_boxes', $meta_boxes, 'hide_meta_boxes', 10, 3 );
+
 	}
 
 	/**

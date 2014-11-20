@@ -1279,4 +1279,25 @@ class D24nc_Metaboxes {
         $this->save_meta_box( $post, 'd24nc_campaign', array('test-send-addresses'), 'test-send', 'code' );
 
     }
+
+    /**
+     * Used to hide certain metaboxes by filter: default_hidden_meta_boxes
+     *
+     * @since   1.0.0
+     * @var     array   $hidden     The currently hidden metaboxes
+     * @var     object  $screen     The object containing information about the current screen
+     * @return  array               An array of all hidden metaboxes
+     */
+    public function hide_meta_boxes( $hidden, $screen, $use_defaults ) {
+
+        switch ( $screen->id ) {
+            case 'd24nc_subscriber':
+                $hidden[] = 'd24nc_metabox_subscriber_hash';
+
+                break;
+        }
+        return $hidden;
+
+    }
+
 }
