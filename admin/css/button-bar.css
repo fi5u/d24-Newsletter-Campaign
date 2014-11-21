@@ -1,0 +1,42 @@
+.d24nc-button-bar {
+
+}
+
+    .d24nc-button-bar__parent,
+    .d24nc-button-bar__button {
+
+    }
+
+    .d24nc-button-bar__parent {
+        display: inline-block;
+        position: relative;
+        margin-bottom: 0;
+        padding: 10px;
+    }
+
+    .d24nc-button-bar__parent + .d24nc-button-bar__parent {
+        margin-top: -10px;
+    }
+
+        .d24nc-button-bar__parent ul {
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            z-index: 400;
+
+            background: #ddd;
+        }
+
+        .d24nc-button-bar__parent:hover > ul {
+            display: block;
+        }
+
+        .d24nc-button-bar__parent .d24nc-button-bar__parent ul {
+            left: 100%;
+        }
+
+    .d24nc-button-bar__button {
+        display: block;
+        margin: 0;
+    }

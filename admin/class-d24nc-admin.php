@@ -222,6 +222,7 @@ class D24nc_Admin {
              * Styles for template post type on post edit screen
              */
             wp_enqueue_style( $this->plugin_name . '-codemirror-style', plugin_dir_url( __FILE__ ) . 'css/codemirror.css', array(), $this->version, 'all' );
+            wp_enqueue_style( $this->plugin_name . '-button-bar-style', plugin_dir_url( __FILE__ ) . 'css/button-bar.css', array(), $this->version, 'all' );
 
         }
 

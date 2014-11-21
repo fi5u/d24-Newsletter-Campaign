@@ -126,7 +126,7 @@ class D24nc_Html_Tags {
                     array(
                         'title'             => __( 'Document structure', $this->plugin_name ),
                         'class'             => 'd24nc-button-bar__parent',
-                        'instance_include'  => 'd24nc_metabox_template_base-html',
+                        'instance_include'  => 'd24nc_metabox_d24nc_template_base-html',
                         'shortcode_only'    => true,
                         'children'          => array(
                             array(
@@ -214,7 +214,7 @@ class D24nc_Html_Tags {
                         /* translators: do not translate ´Head´ - is an HTML element name */
                         'title'             => __( 'Head elements', $this->plugin_name ),
                         'class'             => 'd24nc-button-bar__parent',
-                        'instance_include'  => 'd24nc_metabox_template_base-html',
+                        'instance_include'  => 'd24nc_metabox_d24nc_template_base-html',
                         'shortcode_only'    => true,
                         'children'          => array(
                             array(
@@ -1180,7 +1180,7 @@ class D24nc_Html_Tags {
             array(
                 'title'             => __( 'Email functionality', $this->plugin_name ),
                 'class'             => 'd24nc-button-bar__parent',
-                'instance_include'  => 'd24nc_metabox_template_base-html',
+                'instance_include'  => 'd24nc_metabox_d24nc_template_base-html',
                 'children'          => array(
                     array(
                         'title'             => __( 'Output posts', $this->plugin_name ),
@@ -1295,7 +1295,7 @@ class D24nc_Html_Tags {
             array(
                 'title'             => __( 'Post', $this->plugin_name ),
                 'class'             => 'd24nc-button-bar__parent',
-                'instance_exclude'  => 'd24nc_metabox_template_base-html',
+                'instance_exclude'  => 'd24nc_metabox_d24nc_template_base-html',
                 'children'          => array(
                     array(
                         'title'     => __( 'Post title', $this->plugin_name ),
