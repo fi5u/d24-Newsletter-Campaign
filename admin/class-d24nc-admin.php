@@ -328,4 +328,22 @@ class D24nc_Admin {
 
     }
 
+    /**
+     * Return an empty string, used for filters to remove content completely
+     * Only works for this plugin's screens
+     *
+     * @since   1.0.0
+     * @var     mixed    $return     The current return value
+     * @return  string               An empty string
+     */
+    public function get_empty( $return ) {
+
+        $screen = get_current_screen();
+        if ( strpos( $screen->post_type, $this->plugin_name ) !== false ) {
+            $return = '';
+        }
+        return $return;
+
+    }
+
 }
