@@ -167,8 +167,8 @@ class D24nc {
 	private function define_admin_hooks() {
 
         $defaults = new D24nc_Defaults();
-		$plugin_admin = new D24nc_Admin( $this->get_d24nc(), $this->get_version() );
         $html_tags = new D24nc_Html_Tags( $this->get_d24nc(), $defaults );
+		$plugin_admin = new D24nc_Admin( $this->get_d24nc(), $this->get_version(), $html_tags );
         $meta_boxes = new D24nc_Metaboxes( $this->get_d24nc(), $this->get_version(), $html_tags );
 
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu', 9 );

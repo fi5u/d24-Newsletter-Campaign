@@ -27,7 +27,7 @@ class D24nc_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin
 	 */
 	private $plugin_name;
 
@@ -36,21 +36,32 @@ class D24nc_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string    $version    The current version of this plugin
 	 */
 	private $version;
+
+    /**
+     * An instance of html-tags class.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      instance    $html_tags    The instance of html-tags class
+     */
+    private $html_tags;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @var      string    $plugin_name       The name of this plugin.
-	 * @var      string    $version    The version of this plugin.
+	 * @var      string        $plugin_name        The name of this plugin
+	 * @var      string        $version            The version of this plugin
+     * @var      instance      $html_tags          Instance of class Html_Tags
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $html_tags ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+        $this->html_tags = $html_tags;
 
 	}
 
@@ -270,6 +281,7 @@ class D24nc_Admin {
 
             wp_localize_script( $this->plugin_name . '-template-script', 'codemirrorArgs', $codemirror_args );
             wp_localize_script( $this->plugin_name . '-template-script', 'translation', $template_translations );
+            wp_localize_script( $this->plugin_name . '-template-script', 'buttons', $this->html_tags->get_html_tags() );
         }
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/d24nc-admin.js', array( 'jquery' ), $this->version, false );

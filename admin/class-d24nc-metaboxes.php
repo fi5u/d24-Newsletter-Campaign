@@ -25,7 +25,7 @@ class D24nc_Metaboxes {
      *
      * @since    1.0.0
      * @access   private
-     * @var      string    $plugin_name    The ID of this plugin.
+     * @var      string    $plugin_name    The ID of this plugin
      */
     private $plugin_name;
 
@@ -34,7 +34,7 @@ class D24nc_Metaboxes {
      *
      * @since    1.0.0
      * @access   private
-     * @var      string    $version    The current version of this plugin.
+     * @var      string    $version    The current version of this plugin
      */
     private $version;
 
@@ -43,16 +43,17 @@ class D24nc_Metaboxes {
      *
      * @since    1.0.0
      * @access   private
-     * @var      object    $html_tags    The instance of html-tags class.
+     * @var      instance    $html_tags    The instance of html-tags class
      */
     private $html_tags;
 
     /**
      * Initialize the class and set its properties.
      *
-     * @since    1.0.0
-     * @var      string    $plugin_name       The name of this plugin.
-     * @var      string    $version    The version of this plugin.
+     * @since   1.0.0
+     * @var     string      $plugin_name        The name of this plugin
+     * @var     string      $version            The version of this plugin
+     * @var     instance    $html_tags          The instance of class Html_Tags
      */
     public function __construct( $plugin_name, $version, $html_tags ) {
 
