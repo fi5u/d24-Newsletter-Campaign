@@ -25,19 +25,19 @@ class D24nc_Html_Tags {
      * The unique identifier of this plugin.
      *
      * @since    1.0.0
-     * @access   protected
+     * @access   private
      * @var      string    $plugin_name    The string used to uniquely identify this plugin.
      */
-    protected $plugin_name;
+    private $plugin_name;
 
     /**
      * Default values for plugin functionality.
      *
      * @since    1.0.0
-     * @access   protected
+     * @access   private
      * @var      object    $defaults    The default values object.
      */
-    protected $defaults;
+    private $defaults;
 
     /**
      * Initialize the class and set its properties.
@@ -56,6 +56,7 @@ class D24nc_Html_Tags {
      * Return an array that is used for nesting shortcodes
      *
      * @since  1.0.0
+     * @access private
      * @return array    An array of integers up to maximum nest depth
      */
     private function get_nest_depth_array() {
@@ -70,6 +71,7 @@ class D24nc_Html_Tags {
      * Return the general HTML attributes that apply to most elements
      *
      * @since   1.0.0
+     * @access private
      * @return  array   An array of HTML attributes
      */
     private function get_html_general_atts() {

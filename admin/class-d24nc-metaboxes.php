@@ -63,6 +63,20 @@ class D24nc_Metaboxes {
     }
 
     /**
+     * Remove metaboxes
+     *
+     * @since 1.0.0
+     */
+    public function remove_meta_boxes() {
+
+        remove_meta_box( 'submitdiv', 'd24nc_campaign', 'side' );
+        remove_meta_box( 'submitdiv', 'd24nc_template', 'side' );
+        remove_meta_box( 'submitdiv', 'd24nc_subscriber', 'side' );
+
+    }
+
+
+    /**
      * Remove the subscriber taxonomy ui box in subscriber edit page
      * to be added back in by add_subscriber_taxonomy below submit box
      *
@@ -94,7 +108,7 @@ class D24nc_Metaboxes {
     public function output_subscriber_taxonomy_ui() {
 
         global $post;
-        $defaults = array('taxonomy' => 'subscriber_list');
+        $defaults = array('taxonomy' => 'd24nc_subscriber_list');
         if ( !isset($box['args']) || !is_array($box['args']) )
             $args = array();
         else
@@ -152,32 +166,11 @@ class D24nc_Metaboxes {
 
     }
 
-    /** UNNECESSARY POSS REMOVE
-     * Add a meta box using params
-     * @var  string       $id            ID of the meta box
-     * @var  string       $title         Title of the meta box
-     * @var  function     $cb            Callback function
-     * @var  string       $post_type     The post type to attach the meta box
-     * @var  string       $context       Where the meta box should be placed ('normal', 'advanced', 'side')
-     * @var  string       $priority      How soon the meta box should be output ('high', 'core', 'default', 'low')
-     * @var  array        $callback_args An array of extra arguments
-     */
-    /*private function add_meta_box( $id, $title, $cb, $post_type, $context, $priority, $callback_args = null ) {
-        add_meta_box(
-            $id,
-            __($title, $this->plugin_name),
-            array($this, $cb),
-            $post_type,
-            $context,
-            $priority,
-            $callback_args
-        );
-    }*/
-
     /**
      * Gets the meta and post meta strings
      *
      * @since   1.0.0
+     * @access private
      * @var     string         $post_type       The post type
      * @var     array/string   $field           A single string for the field or an array of strings
      * @var     string         $meta_name       Used when multiple fields are passed
@@ -205,9 +198,10 @@ class D24nc_Metaboxes {
     /**
      * Get the html for the repeater's drop area
      *
-     * @since  1.0.0
-     * @param  bool     $closed     Whether to add the closing tag to the element or not
-     * @return string               The drop area html
+     * @since   1.0.0
+     * @access  private
+     * @var     bool     $closed     Whether to add the closing tag to the element or not
+     * @return  string               The drop area html
      */
     private function get_droparea($closed) {
 
@@ -224,6 +218,7 @@ class D24nc_Metaboxes {
      * Output an item for the repeater
      *
      * @since   1.0.0
+     * @access  private
      * @var     integer     $subfield_i     The iteration count
      * @var     string      $subfield       The name of the subfield item
      * @var     string      $post_type      Name of the current post type
@@ -290,6 +285,7 @@ class D24nc_Metaboxes {
      * Output repeater item delete button html
      *
      * @since   1.0.0
+     * @access  private
      */
     private function output_delete_button() {
 
@@ -302,6 +298,7 @@ class D24nc_Metaboxes {
      *
      * @todo             Move to partial
      * @since   1.0.0
+     * @access  private
      * @var     object   $post          The current post object
      * @var     string   $name_suffix   Suffix for after the name attribute
      * @return  string                  Html output of builder post item
@@ -326,6 +323,7 @@ class D24nc_Metaboxes {
      * Return the html for builder post ´from´ block
      *
      * @since   1.0.0
+     * @access  private
      * @var     string   $title         Title of the block
      * @var     array    $posts_arr     Array of posts
      * @return  string                  Html output of builder posts ´from´ block
@@ -351,6 +349,7 @@ class D24nc_Metaboxes {
      * Check if value is in a multidimensional array
      *
      * @since  1.0.0
+     * @access private
      * @var    string       $needle     String to search for
      * @var    array        $haystack   Array to search through
      * @var    bool         $strict     Apply strict rules to the search
@@ -731,11 +730,73 @@ class D24nc_Metaboxes {
     }
 
     /**
+     * Output submit box for d24nc post types
+     *
+     * @since   1.0.0
+     * @var     object  $post       Current post object
+     * @var     array   $metabox    Meta box attributes
+     */
+    public function output_submit_metabox( $post, $metabox ) {
+
+        ?><div class="submitbox" id="submitpost">
+            <div id="major-publishing-actions">
+                <div id="delete-action">
+                    <a href="<?php echo get_delete_post_link(); ?>" class="submitdelete deletion d24nc-metabox-submit__delete-link"><?php echo $metabox['args']['delete_text']; ?></a>
+                </div>
+                <div id="publishing-action">
+                    <?php submit_button( $metabox['args']['submit_text'], 'primary button large', 'd24nc_metabox_btn_submit', false );?>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div><?php
+
+    }
+
+    /**
      * Add all the required meta boxes
      *
      * @since    1.0.0
      */
     public function add_meta_boxes() {
+
+        add_meta_box(
+            'd24nc_metabox_campaign_submitdiv',
+            __( 'Save Campaign', $this->plugin_name ),
+            array( $this, 'output_submit_metabox'),
+            'd24nc_campaign',
+            'side',
+            'core',
+            array(
+                'submit_text'   => __( 'Save Campaign', $this->plugin_name ),
+                'delete_text'   => __( 'Delete Campaign', $this->plugin_name )
+            )
+        );
+
+        add_meta_box(
+            'd24nc_metabox_template_submitdiv',
+            __( 'Save Template', $this->plugin_name ),
+            array( $this, 'output_submit_metabox'),
+            'd24nc_template',
+            'side',
+            'core',
+            array(
+                'submit_text'   => __( 'Save Template', $this->plugin_name ),
+                'delete_text'   => __( 'Delete Template', $this->plugin_name )
+            )
+        );
+
+        add_meta_box(
+            'd24nc_metabox_subscriber_submitdiv',
+            __( 'Save Subscriber', $this->plugin_name ),
+            array( $this, 'output_submit_metabox'),
+            'd24nc_subscriber',
+            'side',
+            'core',
+            array(
+                'submit_text'   => __( 'Save Subscriber', $this->plugin_name ),
+                'delete_text'   => __( 'Delete Subscriber', $this->plugin_name )
+            )
+        );
 
         add_meta_box(
             'd24nc_metabox_subscriber_name',
@@ -979,6 +1040,7 @@ class D24nc_Metaboxes {
      * Merge two arrays recursively and return
      *
      * @since   1.0.0
+     * @access private
      * @var     array   $array1     First array to merge
      * @var     array   $array2     Second array to merge
      * @return  array               The merged array
@@ -997,6 +1059,7 @@ class D24nc_Metaboxes {
      * Loop through the html tags array to generate an array to add into allowed kses tags
      *
      * @since  1.0.0
+     * @access private
      * @return array    An array of html tags and attributes key:tag name, value: attributes
      */
     private function get_kses_extra_tags() {
@@ -1042,6 +1105,7 @@ class D24nc_Metaboxes {
      * Sanitize string ready to be input to the database
      *
      * @since  1.0.0
+     * @access private
      * @var    string   $value          The value to be sanitized
      * @var    string   $sanitize_as    code, text or false
      * @return string                   The sanitized string
@@ -1074,6 +1138,7 @@ class D24nc_Metaboxes {
      * Create an array of $sanitize_as values
      *
      * @since   1.0.0
+     * @access  private
      * @var     string      $sanitize_as    String to add to each array item
      * @var     integer     $count          Number of iterations to do
      * @return  array                       Array of sanitize_as strings
@@ -1092,6 +1157,7 @@ class D24nc_Metaboxes {
     /**
      * Iterate through each array item to sanitize
      * @since   1.0.0
+     * @access  private
      * @var     string     $item            The array item
      * @var     string     $sanitize_as     Is code
      * @return str

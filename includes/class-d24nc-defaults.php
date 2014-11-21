@@ -24,10 +24,10 @@ class D24nc_Defaults {
      * The unique identifier of this plugin.
      *
      * @since    1.0.0
-     * @access   protected
+     * @access   private
      * @var      integer    $max_nest_depth    Holds the maximum depth for nesting shortcode elements.
      */
-    protected $max_nest_depth = 9;
+    private $max_nest_depth = 9;
 
     /**
      * Return the maximum nesting depth for shortcodes of the same element
