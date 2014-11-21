@@ -205,17 +205,14 @@ class D24nc_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in D24nc_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The D24nc_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+        $screen = get_current_screen();
+        if ( $screen->base === 'post' && $screen->post_type === 'd24nc_template' ) {
+            /**
+             * Styles for template post type on post edit screen
+             */
+            wp_enqueue_style( $this->plugin_name . '-codemirror-style', plugin_dir_url( __FILE__ ) . 'css/codemirror.css', array(), $this->version, 'all' );
+
+        }
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/d24nc-admin.css', array(), $this->version, 'all' );
 
@@ -228,17 +225,52 @@ class D24nc_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in D24nc_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The D24nc_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+        $screen = get_current_screen();
+        if ( $screen->base === 'post' && $screen->post_type === 'd24nc_template' ) {
+            /**
+             * Scripts for template post type on post edit screen
+             */
+
+            $drag_drop_deps = array(
+                'jquery',
+                'jquery-ui-core',
+                'jquery-ui-widget',
+                'jquery-ui-mouse',
+                'jquery-ui-draggable',
+                'jquery-ui-droppable'
+            );
+
+            $codemirror_args = array(
+                'lineNumbers'   => true,
+                'mode'          => 'htmlmixed'
+            );
+
+            $template_translations = array(
+                'optional'          => __( 'Optional', $this->plugin_name ),
+                'insert'            => __( 'Insert', $this->plugin_name ),
+                'cancel'            => __( 'Cancel', $this->plugin_name ),
+                'selectAnOption'    => __( 'Select an option', $this->plugin_name )
+            );
+
+            wp_enqueue_script( $this->plugin_name . '-codemirror-script', plugin_dir_url( __FILE__ ) . 'js/codemirror/codemirror.js', array(), $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-codemirror-xml', plugin_dir_url( __FILE__ ) . 'js/codemirror/xml.js', array(), $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-codemirror-javascript', plugin_dir_url( __FILE__ ) . 'js/codemirror/javascript.js', array(), $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-codemirror-css', plugin_dir_url( __FILE__ ) . 'js/codemirror/css.js', array(), $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-codemirror-html', plugin_dir_url( __FILE__ ) . 'js/codemirror/htmlmixed.js', array(
+                $this->plugin_name . '-codemirror-xml',
+                $this->plugin_name . '-codemirror-javascript',
+                $this->plugin_name . '-codemirror-css'
+            ), $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-repeater-script', plugin_dir_url( __FILE__ ) . 'js/repeater.js', $drag_drop_deps, $this->version, true );
+            wp_enqueue_script( $this->plugin_name . '-template-script', plugin_dir_url( __FILE__ ) . 'js/template.js', array(
+                'jquery',
+                $this->plugin_name . '-codemirror-script',
+                $this->plugin_name . '-codemirror-html'
+            ), $this->version, true );
+
+            wp_localize_script( $this->plugin_name . '-template-script', 'codemirrorArgs', $codemirror_args );
+            wp_localize_script( $this->plugin_name . '-template-script', 'translation', $template_translations );
+        }
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/d24nc-admin.js', array( 'jquery' ), $this->version, false );
 

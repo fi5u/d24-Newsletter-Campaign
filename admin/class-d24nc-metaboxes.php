@@ -84,7 +84,7 @@ class D24nc_Metaboxes {
      */
     public function remove_subscriber_taxonomy() {
 
-        remove_meta_box('d24nc_subscriber_listdiv', 'd24nc_subscriber', 'side');
+        remove_meta_box( 'd24nc_subscriber_listdiv', 'd24nc_subscriber', 'side' );
 
     }
 
@@ -95,7 +95,7 @@ class D24nc_Metaboxes {
      */
     public function add_subscriber_taxonomy() {
 
-        add_meta_box('d24nc_subscriber_listdiv', __( 'Subscriber Lists', $this->plugin_name ), array($this, 'output_subscriber_taxonomy_ui'), 'd24nc_subscriber', 'side', 'low');
+        add_meta_box( 'd24nc_subscriber_listdiv', __( 'Subscriber Lists', $this->plugin_name ), array( $this, 'output_subscriber_taxonomy_ui' ), 'd24nc_subscriber', 'side', 'low' );
 
     }
 
@@ -124,7 +124,7 @@ class D24nc_Metaboxes {
      * Gets the meta and post meta strings
      *
      * @since   1.0.0
-     * @access private
+     * @access   private
      * @var     string         $post_type       The post type
      * @var     array/string   $field           A single string for the field or an array of strings
      * @var     string         $meta_name       Used when multiple fields are passed
