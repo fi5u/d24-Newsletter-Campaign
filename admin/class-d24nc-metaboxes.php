@@ -699,7 +699,7 @@ class D24nc_Metaboxes {
                     <a href="<?php echo get_delete_post_link(); ?>" class="submitdelete deletion d24nc-metabox-submit__delete-link"><?php echo $metabox['args']['delete_text']; ?></a>
                 </div>
                 <div id="publishing-action">
-                    <?php submit_button( $metabox['args']['submit_text'], 'primary button large', 'd24nc_metabox_btn_submit', false );?>
+                    <?php submit_button( $metabox['args']['submit_text'], 'primary button large', 'publish', false );?>
                 </div>
                 <div class="clear"></div>
             </div>

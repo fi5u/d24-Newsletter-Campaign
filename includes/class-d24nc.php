@@ -184,8 +184,8 @@ class D24nc {
 
         $this->loader->add_filter( 'hidden_meta_boxes', $meta_boxes, 'hide_meta_boxes', 10, 3 );
         $this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'set_messages' );
-        $this->loader->add_filter( 'get_sample_permalink_html', $plugin_admin, 'get_empty' );
-        $this->loader->add_filter( 'pre_get_shortlink', $plugin_admin, 'get_empty' );
+        //$this->loader->add_filter( 'get_sample_permalink_html', $plugin_admin, 'get_empty' );
+        //$this->loader->add_filter( 'pre_get_shortlink', $plugin_admin, 'get_empty' );
 
 	}
 
