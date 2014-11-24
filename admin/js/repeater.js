@@ -58,7 +58,7 @@
          */
 
         function repeaterIsEmpty() {
-
+/*.not('.CodeMirror textarea')*/
             var isEmpty = 0;
             $('.d24nc-metabox-repeater__item').find(inputTypes.join()).each(function() {
                 if ($(this).val() === '') {
