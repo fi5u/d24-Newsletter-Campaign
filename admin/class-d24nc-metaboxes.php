@@ -661,7 +661,7 @@ class D24nc_Metaboxes {
         if ( $subscriber_list_ids ) {
             echo '<div class="d24nc-metabox-confirmation" style="display:none;">';
             echo '<p>';
-            echo 'You are about to send <strong>' . $post->post_title . '</strong> to ' . esc_html( $subscriber_list_output ) . ' ' . sprintf( _n( 'subscriber list', 'subscriber lists', $subscriber_lists_count, $this->plugin_name ), $subscriber_lists_count ) . ' ' . sprintf( _n( '(which contains <strong>%d</strong> email address)', '(which contain <strong>%d</strong> email addresses)', $email_count, 'newsletter-campaign' ), $email_count ) . '.<br>';
+            echo 'You are about to send <strong>' . $post->post_title . '</strong> to ' . esc_html( $subscriber_list_output ) . ' ' . sprintf( _n( 'subscriber list', 'subscriber lists', $subscriber_lists_count, $this->plugin_name ), $subscriber_lists_count ) . ' ' . sprintf( _n( '(which contains <strong>%d</strong> email address)', '(which contain <strong>%d</strong> email addresses)', $email_count, $this->plugin_name ), $email_count ) . '.<br>';
             echo __( 'Are you sure you want to send it?', $this->plugin_name );
             echo '</p>';
             echo '<button type="button" class="button button-secondary" id="d24nc_campaign_send_campaign_cancel">' . __( 'Cancel send', $this->plugin_name );

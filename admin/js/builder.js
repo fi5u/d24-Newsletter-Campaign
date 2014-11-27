@@ -12,9 +12,9 @@
         /* SCOPED VARIABLES */
 
         // Store offsets for dragging
-        var dragAreaOffset = $('.nc-builder__posts').offset(),
-            dropMarginTop = parseInt($('.nc-builder__output').css('marginTop')),
-            dropMarginLeft = parseInt($('.nc-builder__output').css('marginLeft')),
+        var dragAreaOffset = $('.d24nc-metabox-builder__posts').offset(),
+            dropMarginTop = parseInt($('.d24nc-metabox-builder__output').css('marginTop')),
+            dropMarginLeft = parseInt($('.d24nc-metabox-builder__output').css('marginLeft')),
 
             draggableAttr = {
                 start: function(event, ui) {
@@ -26,7 +26,7 @@
             droppableAttr = {
                 activeClass: 'ui-state-default',
                 hoverClass: 'ui-state-hover',
-                accept: '.nc-builder__post',
+                accept: '.d24nc-metabox-builder__post',
                 drop: function( event, ui ) {
                     drop($(this), event, ui);
                 }
@@ -46,7 +46,7 @@
             ui.draggable.detach().appendTo($this);
             var originalOffset = ui.draggable.data('originalOffset');
 
-            var dropItem = $this.children('.nc-builder__post');
+            var dropItem = $this.children('.d24nc-metabox-builder__post');
             var boxPosition = dropItem.position();
 
             var container = $this;
@@ -58,10 +58,10 @@
             dropItem.css({top:newTop,left:newLeft}).animate({top:0,left:0});
 
             // Set the name of the post from the drop area data-name value
-            if (dropItem.closest('.nc-builder__output').length) {
-                dropItem.find('.nc-builder__post-id').attr('name', 'newsletter_campaign_builder_' + dropItem.closest('.nc-builder__output').attr('data-name') + '[]');
+            if (dropItem.closest('.d24nc-metabox-builder__output').length) {
+                dropItem.find('.d24nc-metabox-builder__post-id').attr('name', 'd24nc_metabox_builder_' + dropItem.closest('.d24nc-metabox-builder__output').attr('data-name') + '[]');
             } else {
-                dropItem.find('.nc-builder__post-id').removeAttr('name');
+                dropItem.find('.d24nc-metabox-builder__post-id').removeAttr('name');
             }
 
         }
@@ -73,15 +73,15 @@
          * Bind all repeater items to jquery ui draggable
          */
 
-        $('.nc-builder__post').draggable(draggableAttr);
+        $('.d24nc-metabox-builder__post').draggable(draggableAttr);
 
 
         /*
          * Bind all empty repeater drop areas to jquery ui droppable
          */
 
-        $('.nc-builder__output').droppable(droppableAttr);
-        $('.nc-builder__posts').droppable(droppableAttr);
+        $('.d24nc-metabox-builder__output').droppable(droppableAttr);
+        $('.d24nc-metabox-builder__posts').droppable(droppableAttr);
 
 
         /* EVENTS */

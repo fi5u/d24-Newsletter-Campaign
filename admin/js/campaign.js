@@ -27,7 +27,7 @@
                     }
                 }).fail(function() {
                     // Alert with the translated output: Please save before proceeding
-                    alert( nc_ajax_object.please_save );
+                    alert( translation.please_save );
                 });
 
             event.preventDefault();
@@ -36,36 +36,36 @@
 
     $(function () {
 
-        $('button[name="newsletter_campaign_campaign_test-send-btn"]').click(function(event) {
+        $('button[name="d24nc_metabox_d24nc_campaign_test-send-btn"]').click(function(event) {
             autosave(this, event, true);
         });
 
-        $('#nc_campaign_send_campaign').click(function(event) {
+        $('#d24nc_campaign_send_campaign').click(function(event) {
 
             // Has already been clicked once, therefore got to save the post and send campaign
-            if ($(this).hasClass('nc-campaign__send-ready')) {
+            if ($(this).hasClass('d24nc-campaign__send-ready')) {
                 return true;
             }
 
             // Add a class to identify the second click
-            $(this).addClass('nc-campaign__send-ready');
+            $(this).addClass('d24nc-campaign__send-ready');
 
             // Show the confirmation
-            $('.nc-campaign__confirmation').slideDown();
+            $('.d24nc-metabox-confirmation').slideDown();
 
             // Auto save data before proceeding
             autosave(this, event);
         });
 
 
-        $('#nc_campaign_send_campaign_cancel').click(function() {
+        $('#d24nc_campaign_send_campaign_cancel').click(function() {
 
             // Remove the class to ensure the campaign doesn't get sent
-            $('#nc_campaign_send_campaign').removeClass('nc-campaign__send-ready');
+            $('#d24nc_campaign_send_campaign').removeClass('d24nc-campaign__send-ready');
 
             // Hide the confirmation
-            $('.nc-campaign__confirmation').slideUp();
-        })
+            $('.d24nc-metabox-confirmation').slideUp();
+        });
 
 
     });

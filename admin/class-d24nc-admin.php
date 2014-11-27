@@ -240,19 +240,22 @@ class D24nc_Admin {
         $screen = get_current_screen();
         if ( $screen->base === 'post' ) {
 
+            /**
+             * Shared between template and campaign
+             */
+            $drag_drop_deps = array(
+                'jquery',
+                'jquery-ui-core',
+                'jquery-ui-widget',
+                'jquery-ui-mouse',
+                'jquery-ui-draggable',
+                'jquery-ui-droppable'
+            );
+
             if ( $screen->post_type === 'd24nc_template' ) {
                 /**
                  * Scripts for template post type on post edit screen
                  */
-
-                $drag_drop_deps = array(
-                    'jquery',
-                    'jquery-ui-core',
-                    'jquery-ui-widget',
-                    'jquery-ui-mouse',
-                    'jquery-ui-draggable',
-                    'jquery-ui-droppable'
-                );
 
                 $codemirror_args = array(
                     'lineNumbers'   => true,

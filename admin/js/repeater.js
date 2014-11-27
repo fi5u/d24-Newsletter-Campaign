@@ -308,7 +308,6 @@
          */
 
         $('#d24nc_metabox_repeater_btn_add').click(function(e) {
-
             addRepeaterBlock();
             e.preventDefault();
 
