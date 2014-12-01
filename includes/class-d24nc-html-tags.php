@@ -35,7 +35,7 @@ class D24nc_Html_Tags {
      *
      * @since    1.0.0
      * @access   private
-     * @var      object    $defaults    The default values object.
+     * @var      D24nc_Defaults    $defaults    Instance of D24nc_default class
      */
     private $defaults;
 
@@ -60,11 +60,13 @@ class D24nc_Html_Tags {
      * @return array    An array of integers up to maximum nest depth
      */
     private function get_nest_depth_array() {
+
         $nest_array = array();
         for ($i = 0; $i <= $this->defaults->get_max_nest_depth(); $i++) {
             $nest_array[] = $i;
         }
         return $nest_array;
+
     }
 
     /**

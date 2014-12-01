@@ -113,6 +113,11 @@ class D24nc {
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-d24nc-html-tags.php';
 
+        /**
+         * The class responsible for processing shortcodes
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-d24nc-shortcodes.php';
+
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
@@ -173,9 +178,10 @@ class D24nc {
 
         $defaults = new D24nc_Defaults();
         $html_tags = new D24nc_Html_Tags( $this->get_d24nc(), $defaults );
+        $shortcodes = new D24nc_Shortcodes( $this->get_d24nc(), $defaults, $html_tags );
 		$plugin_admin = new D24nc_Admin( $this->get_d24nc(), $this->get_version(), $html_tags );
         $meta_boxes = new D24nc_Metaboxes( $this->get_d24nc(), $this->get_version(), $html_tags );
-        $send = new D24nc_Send( $this->get_d24nc() );
+        $send = new D24nc_Send( $this->get_d24nc(), $shortcodes );
 
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu', 9 );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_submenus_last', 10 );

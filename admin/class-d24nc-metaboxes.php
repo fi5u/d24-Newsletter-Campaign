@@ -39,11 +39,11 @@ class D24nc_Metaboxes {
     private $version;
 
     /**
-     * An instance of html-tags class.
+     * An instance of Html_Tags class.
      *
      * @since    1.0.0
      * @access   private
-     * @var      instance    $html_tags    The instance of html-tags class
+     * @var      Html_Tags  $html_tags  The instance of Html_Tags class
      */
     private $html_tags;
 
@@ -693,7 +693,26 @@ class D24nc_Metaboxes {
      */
     public function output_submit_metabox( $post, $metabox ) {
 
+        global $post;
+        $post_type = $post->post_type;
         ?><div class="submitbox" id="submitpost">
+            <?php if ( $post_type === 'd24nc_campaign' ) { ?>
+                <div class="misc-pub-section">
+                    <label for="d24nc_message_subject"><?php _e( 'Message subject', $this->plugin_name ); ?></label>
+                    <?php wp_nonce_field( 'd24nc_metabox_d24nc_campaign_message-subject_box', 'd24nc_metabox_d24nc_campaign_message-subject_box_nonce' ); ?>
+                    <?php // If subject is saved output that, otherwise output Campaign title ?>
+                    <?php $subject = get_post_meta( $post->ID, '_d24nc_campaign_message-subject', true ) != '' ? get_post_meta( $post->ID, '_d24nc_campaign_message-subject', true ) : get_the_title(); ?>
+
+                    <input type="text" name="d24nc_metabox_d24nc_campaign_message-subject" id="d24nc_message_subject"<?php echo( $subject ? ' value="' . esc_attr( $subject ) . '"' : '' ); ?>>
+
+                    <h4>Headers</h4>
+                    <label for="d24nc_message_from"><?php _e( 'From', $this->plugin_name ); ?></label>
+                    <?php wp_nonce_field( 'd24nc_metabox_d24nc_campaign_message-from_box', 'd24nc_metabox_d24nc_campaign_message-from_box_nonce' ); ?>
+                    <?php $from = get_post_meta( $post->ID, '_d24nc_campaign_message-from', true ) != '' ? get_post_meta( $post->ID, '_d24nc_campaign_message-from', true ) : ''; ?>
+
+                    <input type="text" name="d24nc_metabox_d24nc_campaign_message-from" id="d24nc_message_from"<?php echo( $from ? ' value="' . esc_attr( $from ) . '"' : '' ); ?>>
+                </div>
+            <?php } ?>
             <div id="major-publishing-actions">
                 <div id="delete-action">
                     <a href="<?php echo get_delete_post_link(); ?>" class="submitdelete deletion d24nc-metabox-submit__delete-link"><?php echo $metabox['args']['delete_text']; ?></a>
